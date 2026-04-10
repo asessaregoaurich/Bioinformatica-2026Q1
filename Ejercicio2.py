@@ -87,6 +87,7 @@ def mostrar_resumen(xml_file, modo):
     with open(xml_file) as f:
         blast_records = list(NCBIXML.parse(f))
 
+    tiene_hits = False
     for blast_record in blast_records:
         print(f"  Query: {blast_record.query}")
         print(f"  Hits encontrados: {len(blast_record.alignments)}\n")
@@ -95,6 +96,7 @@ def mostrar_resumen(xml_file, modo):
             print("  No se encontraron hits significativos.")
             continue
 
+        tiene_hits = True
         print(f"  {'#':<4} {'Descripción':<50} {'Score':>8} {'E-value':>12} {'Identity':>10}")
         print(f"  {'-'*88}")
 
@@ -104,6 +106,11 @@ def mostrar_resumen(xml_file, modo):
             desc = alignment.title[:48] + ".." if len(alignment.title) > 48 else alignment.title
             print(f"  {i+1:<4} {desc:<50} {hsp.score:>8.0f} {hsp.expect:>12.2e} {identity_pct:>9.1f}%")
         print()
+
+    # Borrar el archivo si no tuvo hits
+    if not tiene_hits:
+        os.remove(xml_file)
+        print(f"  Archivo eliminado (sin hits): {xml_file}")
 
 
 def main():
