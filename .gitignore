@@ -220,3 +220,5 @@ swissprot*
 *.pjs
 taxdb*
 *.sqlite3
+prosite.dat
+prosite.doc
