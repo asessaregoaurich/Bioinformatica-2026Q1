@@ -1,0 +1,196 @@
+########################################
+# Program: patmatmotifs
+# Rundate: Thu 14 May 2026 17:34:21
+# Commandline: patmatmotifs
+#    -full
+#    -sequence Ej4_ORF_frame2.fasta
+#    -outfile Ej4_dominios.patmatmotifs
+#    -auto
+# Report_format: dbmotif
+# Report_file: Ej4_dominios.patmatmotifs
+########################################
+
+#=======================================
+#
+# Sequence: NM_001388492.1_1     from: 1   to: 3142
+# HitCount: 4
+#
+# Full: Yes
+# Prune: Yes
+# Data_file: /opt/anaconda3/envs/bioinformatica/bin/../share/EMBOSS/data/PROSITE/prosite.lines
+#
+#=======================================
+
+Length = 4
+Start = position 2543 of sequence
+End = position 2546 of sequence
+
+Motif = AMIDATION
+
+ALDTRFGRKLSIIR
+     |  |
+  2543  2546
+
+Length = 4
+Start = position 1530 of sequence
+End = position 1533 of sequence
+
+Motif = AMIDATION
+
+DGIMASGRKAVTHA
+     |  |
+  1530  1533
+
+Length = 22
+Start = position 1444 of sequence
+End = position 1465 of sequence
+
+Motif = LEUCINE_ZIPPER
+
+TTCVQLQKQVLDLLAQLVQLRVNYCLLDSDQV
+     |                    |
+  1444                    1465
+
+Length = 8
+Start = position 2714 of sequence
+End = position 2721 of sequence
+
+Motif = TYR_PHOSPHO_SITE_2
+
+DLFTERNQFELMYVTLTE
+     |      |
+  2714      2721
+
+
+#---------------------------------------
+#
+# Motif: AMIDATION
+# Count: 2
+# 
+# ******************
+# * Amidation site *
+# ******************
+# 
+# The precursor of  hormones  and other active  peptides  which are C-terminally
+# amidated is always directly followed [1,2] by a glycine residue which provides
+# the amide group, and  most often by at  least two  consecutive  basic residues
+# (Arg or Lys) which generally function as an active peptide  precursor cleavage
+# site.  Although all amino acids can be amidated,  neutral hydrophobic residues
+# such as Val or Phe are good substrates, while  charged residues such as Asp or
+# Arg  are much less reactive.  C-terminal  amidation has not  yet been shown to
+# occur in unicellular organisms or in plants.
+# 
+# -Consensus pattern: x-G-[RK]-[RK]
+#                     [x is the amidation site]
+# -Last update: June 1988 / First entry.
+# 
+# [ 1] Kreil G.
+#      "Occurrence, detection, and biosynthesis of carboxy-terminal amides."
+#      Methods Enzymol. 106:218-223(1984).
+#      PubMed=6548541
+# [ 2] Bradbury A.F., Smyth D.G.
+#      "Biosynthesis of the C-terminal amide in peptide hormones."
+#      Biosci. Rep. 7:907-916(1987).
+#      PubMed=3331120
+# 
+# ***************
+# 
+# Motif: LEUCINE_ZIPPER
+# Count: 1
+# 
+# **************************
+# * Leucine zipper pattern *
+# **************************
+# 
+# A structure,  referred to as the 'leucine zipper' [1,2], has been proposed  to
+# explain  how some eukaryotic gene regulatory proteins work. The leucine zipper
+# consist  of a  periodic  repetition  of  leucine  residues  at  every  seventh
+# position over a distance covering eight helical turns. The segments containing
+# these  periodic  arrays of leucine residues seem to exist in  an alpha-helical
+# conformation. The leucine side chains extending from one alpha-helix  interact
+# with those  from a similar alpha helix  of  a second polypeptide, facilitating
+# dimerization; the structure formed by cooperation of these two regions forms a
+# coiled coil [3]. The leucine zipper pattern is present in many gene regulatory
+# proteins, such as:
+# 
+#  - The CCATT-box and enhancer binding protein (C/EBP).
+#  - The cAMP response element (CRE) binding proteins (CREB, CRE-BP1, ATFs).
+#  - The Jun/AP1 family of transcription factors.
+#  - The yeast general control protein GCN4.
+#  - The fos oncogene, and the fos-related proteins fra-1 and fos B.
+#  - The C-myc, L-myc and N-myc oncogenes.
+#  - The octamer-binding transcription factor 2 (Oct-2/OTF-2).
+# 
+# -Consensus pattern: L-x(6)-L-x(6)-L-x(6)-L
+# -Sequences known to belong to this class detected by the pattern: All    those
+#  mentioned in the original paper, with the exception of L-myc which  has a Met
+#  instead of the second Leu.
+# -Other sequence(s) detected in Swiss-Prot: some 600 other sequences from every
+#  category of protein families.
+# 
+# -Note: As this is far from being a specific  pattern you should be cautious in
+#  citing the presence of such pattern in a protein  if it has not been shown to
+#  be a nuclear DNA-binding protein.
+# 
+# -Last update: December 1992 / Text revised.
+# 
+# [ 1] Landschulz W.H., Johnson P.F., McKnight S.L.
+#      "The leucine zipper: a hypothetical structure common to a new class of
+#      DNA binding proteins."
+#      Science 240:1759-1764(1988).
+#      PubMed=3289117
+# [ 2] Busch S.J., Sassone-Corsi P.
+#      "Dimers, leucine zippers and DNA-binding domains."
+#      Trends Genet. 6:36-40(1990).
+#      PubMed=2186528
+# [ 3] O'Shea E.K., Rutkowski R., Kim P.S.
+#      Science 243:538-542(1989).
+# 
+# ***************
+# 
+# Motif: TYR_PHOSPHO_SITE_2
+# Count: 1
+# 
+# *****************************************
+# * Tyrosine kinase phosphorylation sites *
+# *****************************************
+# 
+# Substrates of tyrosine protein kinases are generally characterized by a lysine
+# or an arginine seven residues  to  the N-terminal side  of  the phosphorylated
+# tyrosine.  An acidic residue (Asp  or Glu) is often  found at either  three or
+# four residues to  the N-terminal side  of  the tyrosine  [1,2,3].  There are a
+# number of exceptions to  this rule such as the  tyrosine phosphorylation sites
+# of enolase and lipocortin II.
+# 
+# We developed  two  signature  patterns for the tyrosine kinase phosphorylation
+# sites. The  first  pattern  is  directed  against  the  sites where the acidic
+# residue (Asp  or Glu) is found at three residues to the N-terminal side of the
+# tyrosine, and the second one against the site where it is at four.
+# 
+# -Consensus pattern: [RK]-x(2)-[DE]-x(3)-Y
+#                     [Y is the phosphorylation site]
+# 
+# -Consensus pattern: [RK]-x(3)-[DE]-x(2)-Y
+#                     [Y is the phosphorylation site]
+# 
+# -Last update: March 2019 / Text and pattern revised; pattern added.
+# 
+# [ 1] Patschinsky T., Hunter T., Esch F.S., Cooper J.A., Sefton B.M.
+#      "Analysis of the sequence of amino acids surrounding sites of tyrosine
+#      phosphorylation."
+#      Proc. Natl. Acad. Sci. U.S.A. 79:973-977(1982).
+#      PubMed=6280176
+# [ 2] Hunter T.
+#      "Synthetic peptide substrates for a tyrosine protein kinase."
+#      J. Biol. Chem. 257:4843-4848(1982).
+#      PubMed=6279650
+# [ 3] Cooper J.A., Esch F.S., Taylor S.S., Hunter T.
+#      "Phosphorylation sites in enolase and lactate dehydrogenase utilized
+#      by tyrosine protein kinases in vivo and in vitro."
+#      J. Biol. Chem. 259:7835-7841(1984).
+#      PubMed=6330085
+# 
+# ***************
+# 
+#
+#---------------------------------------
