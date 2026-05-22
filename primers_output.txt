@@ -1,0 +1,61 @@
+=================================================================
+  DISEÑO DE PRIMERS - EJERCICIO 5
+  Gen: HTT
+=================================================================
+
+PARÁMETROS DE DISEÑO (desde primer_config.json):
+  Longitud          : 18 - 24 nt
+  Contenido GC      : 50% - 60%
+  Tm máxima         : 67°C
+  Evitar GC en 3'   : True
+  Cantidad pedida   : 5 primers
+
+-----------------------------------------------------------------
+
+PRIMER #1
+  Secuencia   : 5'-AAGATGGACGGCCGCTCAGGTTCT-3'
+  Dirección   : forward
+  Posición    : 18 - 41 (en el transcripto)
+  Longitud    : 24 nt
+  %GC         : 58.33%
+  Tm          : 60.8°C
+  Termina en GC: No
+
+PRIMER #2
+  Secuencia   : 5'-CCATGGCGACCCTGGAAAAGCTGA-3'
+  Dirección   : forward
+  Posición    : 144 - 167 (en el transcripto)
+  Longitud    : 24 nt
+  %GC         : 58.33%
+  Tm          : 60.8°C
+  Termina en GC: No
+
+PRIMER #3
+  Secuencia   : 5'-GAGCCGCTGCACCGACCAAAGAAA-3'
+  Dirección   : forward
+  Posición    : 392 - 415 (en el transcripto)
+  Longitud    : 24 nt
+  %GC         : 58.33%
+  Tm          : 60.8°C
+  Termina en GC: No
+
+PRIMER #4
+  Secuencia   : 5'-GGCATTCGTCAGCCACCATCCTGA-3'
+  Dirección   : reverse
+  Posición    : 573 - 596 (en el transcripto)
+  Longitud    : 24 nt
+  %GC         : 58.33%
+  Tm          : 60.8°C
+  Termina en GC: No
+
+PRIMER #5
+  Secuencia   : 5'-GCAAACTCCGAGGGGCACCATTCT-3'
+  Dirección   : reverse
+  Posición    : 672 - 695 (en el transcripto)
+  Longitud    : 24 nt
+  %GC         : 58.33%
+  Tm          : 60.8°C
+  Termina en GC: No
+
+-----------------------------------------------------------------
+Total de primers diseñados: 5

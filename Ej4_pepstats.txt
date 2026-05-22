@@ -1,0 +1,432 @@
+
+============================================================
+ORF 1: NM_001388492_1 (3142 aa)
+============================================================
+PEPSTATS of NM_001388492_1 from 1 to 3142
+
+Molecular weight = 347603.30 		Residues = 3142  
+Average Residue Weight  = 110.631 	Charge   = -19.5 
+Isoelectric Point = 6.1446
+A280 Molar Extinction Coefficients  = 268380 (reduced)   272755 (cystine bridges)
+A280 Extinction Coefficients 1mg/ml = 0.772 (reduced)   0.785 (cystine bridges)
+Improbability of expression in inclusion bodies = 0.586
+
+Residue		Number		Mole%		DayhoffStat
+A = Ala		236		7.511  		0.873  	
+B = Asx		0		0.000  		0.000  	
+C = Cys		70		2.228  		0.768  	
+D = Asp		139		4.424  		0.804  	
+E = Glu		203		6.461  		1.077  	
+F = Phe		95		3.024  		0.840  	
+G = Gly		139		4.424  		0.527  	
+H = His		89		2.833  		1.416  	
+I = Ile		149		4.742  		1.054  	
+J = ---		0		0.000  		0.000  	
+K = Lys		124		3.947  		0.598  	
+L = Leu		418		13.304 		1.798  	
+M = Met		66		2.101  		1.236  	
+N = Asn		90		2.864  		0.666  	
+O = ---		0		0.000  		0.000  	
+P = Pro		188		5.983  		1.151  	
+Q = Gln		180		5.729  		1.469  	
+R = Arg		154		4.901  		1.000  	
+S = Ser		306		9.739  		1.391  	
+T = Thr		170		5.411  		0.887  	
+U = ---		0		0.000  		0.000  	
+V = Val		232		7.384  		1.119  	
+W = Trp		32		1.018  		0.783  	
+X = Xaa		0		0.000  		0.000  	
+Y = Tyr		62		1.973  		0.580  	
+Z = Glx		0		0.000  		0.000  	
+
+Property	Residues		Number		Mole%
+Tiny		(A+C+G+S+T)		921		29.313
+Small		(A+B+C+D+G+N+P+S+T+V)	1570		49.968
+Aliphatic	(A+I+L+V)		1035		32.941
+Aromatic	(F+H+W+Y)		278		 8.848
+Non-polar	(A+C+F+G+I+L+M+P+V+W+Y)	1687		53.692
+Polar		(D+E+H+K+N+Q+R+S+T+Z)	1455		46.308
+Charged		(B+D+E+H+K+R+Z)		709		22.565
+Basic		(H+K+R)			367		11.680
+Acidic		(B+D+E+Z)		342		10.885
+
+
+
+
+============================================================
+ORF 2: NM_001388492_2 (102 aa)
+============================================================
+PEPSTATS of NM_001388492_2 from 1 to 102
+
+Molecular weight = 10836.14  		Residues = 102   
+Average Residue Weight  = 106.237 	Charge   = 0.0   
+Isoelectric Point = 6.4362
+A280 Molar Extinction Coefficients  = 27500 (reduced)   27750 (cystine bridges)
+A280 Extinction Coefficients 1mg/ml = 2.538 (reduced)   2.561 (cystine bridges)
+Improbability of expression in inclusion bodies = 0.954
+
+Residue		Number		Mole%		DayhoffStat
+A = Ala		9		8.824  		1.026  	
+B = Asx		0		0.000  		0.000  	
+C = Cys		4		3.922  		1.352  	
+D = Asp		4		3.922  		0.713  	
+E = Glu		6		5.882  		0.980  	
+F = Phe		2		1.961  		0.545  	
+G = Gly		10		9.804  		1.167  	
+H = His		2		1.961  		0.980  	
+I = Ile		1		0.980  		0.218  	
+J = ---		0		0.000  		0.000  	
+K = Lys		3		2.941  		0.446  	
+L = Leu		10		9.804  		1.325  	
+M = Met		1		0.980  		0.577  	
+N = Asn		1		0.980  		0.228  	
+O = ---		0		0.000  		0.000  	
+P = Pro		10		9.804  		1.885  	
+Q = Gln		3		2.941  		0.754  	
+R = Arg		6		5.882  		1.200  	
+S = Ser		16		15.686 		2.241  	
+T = Thr		4		3.922  		0.643  	
+U = ---		0		0.000  		0.000  	
+V = Val		5		4.902  		0.743  	
+W = Trp		5		4.902  		3.771  	
+X = Xaa		0		0.000  		0.000  	
+Y = Tyr		0		0.000  		0.000  	
+Z = Glx		0		0.000  		0.000  	
+
+Property	Residues		Number		Mole%
+Tiny		(A+C+G+S+T)		43		42.157
+Small		(A+B+C+D+G+N+P+S+T+V)	63		61.765
+Aliphatic	(A+I+L+V)		25		24.510
+Aromatic	(F+H+W+Y)		9		 8.824
+Non-polar	(A+C+F+G+I+L+M+P+V+W+Y)	57		55.882
+Polar		(D+E+H+K+N+Q+R+S+T+Z)	45		44.118
+Charged		(B+D+E+H+K+R+Z)		21		20.588
+Basic		(H+K+R)			11		10.784
+Acidic		(B+D+E+Z)		10		 9.804
+
+
+
+
+============================================================
+ORF 3: NM_001388492_3 (107 aa)
+============================================================
+PEPSTATS of NM_001388492_3 from 1 to 107
+
+Molecular weight = 11960.29  		Residues = 107   
+Average Residue Weight  = 111.778 	Charge   = 4.0   
+Isoelectric Point = 7.8539
+A280 Molar Extinction Coefficients  = 5500 (reduced)   6000 (cystine bridges)
+A280 Extinction Coefficients 1mg/ml = 0.460 (reduced)   0.502 (cystine bridges)
+Improbability of expression in inclusion bodies = 0.755
+
+Residue		Number		Mole%		DayhoffStat
+A = Ala		2		1.869  		0.217  	
+B = Asx		0		0.000  		0.000  	
+C = Cys		8		7.477  		2.578  	
+D = Asp		3		2.804  		0.510  	
+E = Glu		5		4.673  		0.779  	
+F = Phe		6		5.607  		1.558  	
+G = Gly		8		7.477  		0.890  	
+H = His		4		3.738  		1.869  	
+I = Ile		10		9.346  		2.077  	
+J = ---		0		0.000  		0.000  	
+K = Lys		3		2.804  		0.425  	
+L = Leu		14		13.084 		1.768  	
+M = Met		3		2.804  		1.649  	
+N = Asn		5		4.673  		1.087  	
+O = ---		0		0.000  		0.000  	
+P = Pro		4		3.738  		0.719  	
+Q = Gln		1		0.935  		0.240  	
+R = Arg		7		6.542  		1.335  	
+S = Ser		5		4.673  		0.668  	
+T = Thr		8		7.477  		1.226  	
+U = ---		0		0.000  		0.000  	
+V = Val		10		9.346  		1.416  	
+W = Trp		1		0.935  		0.719  	
+X = Xaa		0		0.000  		0.000  	
+Y = Tyr		0		0.000  		0.000  	
+Z = Glx		0		0.000  		0.000  	
+
+Property	Residues		Number		Mole%
+Tiny		(A+C+G+S+T)		31		28.972
+Small		(A+B+C+D+G+N+P+S+T+V)	53		49.533
+Aliphatic	(A+I+L+V)		36		33.645
+Aromatic	(F+H+W+Y)		11		10.280
+Non-polar	(A+C+F+G+I+L+M+P+V+W+Y)	66		61.682
+Polar		(D+E+H+K+N+Q+R+S+T+Z)	41		38.318
+Charged		(B+D+E+H+K+R+Z)		22		20.561
+Basic		(H+K+R)			14		13.084
+Acidic		(B+D+E+Z)		8		 7.477
+
+
+
+
+============================================================
+ORF 4: NM_001388492_4 (126 aa)
+============================================================
+PEPSTATS of NM_001388492_4 from 1 to 126
+
+Molecular weight = 13698.43  		Residues = 126   
+Average Residue Weight  = 108.718 	Charge   = 3.5   
+Isoelectric Point = 7.4801
+A280 Molar Extinction Coefficients  = 28990 (reduced)   29115 (cystine bridges)
+A280 Extinction Coefficients 1mg/ml = 2.116 (reduced)   2.125 (cystine bridges)
+Improbability of expression in inclusion bodies = 0.865
+
+Residue		Number		Mole%		DayhoffStat
+A = Ala		16		12.698 		1.477  	
+B = Asx		0		0.000  		0.000  	
+C = Cys		2		1.587  		0.547  	
+D = Asp		2		1.587  		0.289  	
+E = Glu		7		5.556  		0.926  	
+F = Phe		4		3.175  		0.882  	
+G = Gly		9		7.143  		0.850  	
+H = His		7		5.556  		2.778  	
+I = Ile		3		2.381  		0.529  	
+J = ---		0		0.000  		0.000  	
+K = Lys		3		2.381  		0.361  	
+L = Leu		13		10.317 		1.394  	
+M = Met		3		2.381  		1.401  	
+N = Asn		3		2.381  		0.554  	
+O = ---		0		0.000  		0.000  	
+P = Pro		11		8.730  		1.679  	
+Q = Gln		6		4.762  		1.221  	
+R = Arg		6		4.762  		0.972  	
+S = Ser		13		10.317 		1.474  	
+T = Thr		10		7.937  		1.301  	
+U = ---		0		0.000  		0.000  	
+V = Val		2		1.587  		0.241  	
+W = Trp		5		3.968  		3.053  	
+X = Xaa		0		0.000  		0.000  	
+Y = Tyr		1		0.794  		0.233  	
+Z = Glx		0		0.000  		0.000  	
+
+Property	Residues		Number		Mole%
+Tiny		(A+C+G+S+T)		50		39.683
+Small		(A+B+C+D+G+N+P+S+T+V)	68		53.968
+Aliphatic	(A+I+L+V)		34		26.984
+Aromatic	(F+H+W+Y)		17		13.492
+Non-polar	(A+C+F+G+I+L+M+P+V+W+Y)	69		54.762
+Polar		(D+E+H+K+N+Q+R+S+T+Z)	57		45.238
+Charged		(B+D+E+H+K+R+Z)		25		19.841
+Basic		(H+K+R)			16		12.698
+Acidic		(B+D+E+Z)		9		 7.143
+
+
+
+
+============================================================
+ORF 5: NM_001388492_5 (177 aa)
+============================================================
+PEPSTATS of NM_001388492_5 from 1 to 177
+
+Molecular weight = 19165.73  		Residues = 177   
+Average Residue Weight  = 108.281 	Charge   = 13.5  
+Isoelectric Point = 10.9115
+A280 Molar Extinction Coefficients  = 23490 (reduced)   23615 (cystine bridges)
+A280 Extinction Coefficients 1mg/ml = 1.226 (reduced)   1.232 (cystine bridges)
+Improbability of expression in inclusion bodies = 0.901
+
+Residue		Number		Mole%		DayhoffStat
+A = Ala		21		11.864 		1.380  	
+B = Asx		0		0.000  		0.000  	
+C = Cys		3		1.695  		0.584  	
+D = Asp		5		2.825  		0.514  	
+E = Glu		5		2.825  		0.471  	
+F = Phe		5		2.825  		0.785  	
+G = Gly		16		9.040  		1.076  	
+H = His		11		6.215  		3.107  	
+I = Ile		1		0.565  		0.126  	
+J = ---		0		0.000  		0.000  	
+K = Lys		5		2.825  		0.428  	
+L = Leu		14		7.910  		1.069  	
+M = Met		4		2.260  		1.329  	
+N = Asn		2		1.130  		0.263  	
+O = ---		0		0.000  		0.000  	
+P = Pro		21		11.864 		2.282  	
+Q = Gln		15		8.475  		2.173  	
+R = Arg		13		7.345  		1.499  	
+S = Ser		10		5.650  		0.807  	
+T = Thr		12		6.780  		1.111  	
+U = ---		0		0.000  		0.000  	
+V = Val		9		5.085  		0.770  	
+W = Trp		4		2.260  		1.738  	
+X = Xaa		0		0.000  		0.000  	
+Y = Tyr		1		0.565  		0.166  	
+Z = Glx		0		0.000  		0.000  	
+
+Property	Residues		Number		Mole%
+Tiny		(A+C+G+S+T)		62		35.028
+Small		(A+B+C+D+G+N+P+S+T+V)	99		55.932
+Aliphatic	(A+I+L+V)		45		25.424
+Aromatic	(F+H+W+Y)		21		11.864
+Non-polar	(A+C+F+G+I+L+M+P+V+W+Y)	99		55.932
+Polar		(D+E+H+K+N+Q+R+S+T+Z)	78		44.068
+Charged		(B+D+E+H+K+R+Z)		39		22.034
+Basic		(H+K+R)			29		16.384
+Acidic		(B+D+E+Z)		10		 5.650
+
+
+
+
+============================================================
+ORF 6: NM_001388492_6 (137 aa)
+============================================================
+PEPSTATS of NM_001388492_6 from 1 to 137
+
+Molecular weight = 15164.49  		Residues = 137   
+Average Residue Weight  = 110.690 	Charge   = 12.0  
+Isoelectric Point = 11.5858
+A280 Molar Extinction Coefficients  = 30480 (reduced)   30730 (cystine bridges)
+A280 Extinction Coefficients 1mg/ml = 2.010 (reduced)   2.026 (cystine bridges)
+Improbability of expression in inclusion bodies = 0.769
+
+Residue		Number		Mole%		DayhoffStat
+A = Ala		10		7.299  		0.849  	
+B = Asx		0		0.000  		0.000  	
+C = Cys		4		2.920  		1.007  	
+D = Asp		4		2.920  		0.531  	
+E = Glu		3		2.190  		0.365  	
+F = Phe		5		3.650  		1.014  	
+G = Gly		11		8.029  		0.956  	
+H = His		0		0.000  		0.000  	
+I = Ile		5		3.650  		0.811  	
+J = ---		0		0.000  		0.000  	
+K = Lys		4		2.920  		0.442  	
+L = Leu		15		10.949 		1.480  	
+M = Met		6		4.380  		2.576  	
+N = Asn		3		2.190  		0.509  	
+O = ---		0		0.000  		0.000  	
+P = Pro		6		4.380  		0.842  	
+Q = Gln		3		2.190  		0.561  	
+R = Arg		15		10.949 		2.234  	
+S = Ser		21		15.328 		2.190  	
+T = Thr		12		8.759  		1.436  	
+U = ---		0		0.000  		0.000  	
+V = Val		3		2.190  		0.332  	
+W = Trp		5		3.650  		2.807  	
+X = Xaa		0		0.000  		0.000  	
+Y = Tyr		2		1.460  		0.429  	
+Z = Glx		0		0.000  		0.000  	
+
+Property	Residues		Number		Mole%
+Tiny		(A+C+G+S+T)		58		42.336
+Small		(A+B+C+D+G+N+P+S+T+V)	74		54.015
+Aliphatic	(A+I+L+V)		33		24.088
+Aromatic	(F+H+W+Y)		12		 8.759
+Non-polar	(A+C+F+G+I+L+M+P+V+W+Y)	72		52.555
+Polar		(D+E+H+K+N+Q+R+S+T+Z)	65		47.445
+Charged		(B+D+E+H+K+R+Z)		26		18.978
+Basic		(H+K+R)			19		13.869
+Acidic		(B+D+E+Z)		7		 5.109
+
+
+
+
+============================================================
+ORF 7: NM_001388492_7 (227 aa)
+============================================================
+PEPSTATS of NM_001388492_7 from 1 to 227
+
+Molecular weight = 25366.37  		Residues = 227   
+Average Residue Weight  = 111.746 	Charge   = 13.0  
+Isoelectric Point = 8.1281
+A280 Molar Extinction Coefficients  = 17990 (reduced)   18740 (cystine bridges)
+A280 Extinction Coefficients 1mg/ml = 0.709 (reduced)   0.739 (cystine bridges)
+Improbability of expression in inclusion bodies = 0.713
+
+Residue		Number		Mole%		DayhoffStat
+A = Ala		11		4.846  		0.563  	
+B = Asx		0		0.000  		0.000  	
+C = Cys		12		5.286  		1.823  	
+D = Asp		10		4.405  		0.801  	
+E = Glu		7		3.084  		0.514  	
+F = Phe		9		3.965  		1.101  	
+G = Gly		26		11.454 		1.364  	
+H = His		18		7.930  		3.965  	
+I = Ile		9		3.965  		0.881  	
+J = ---		0		0.000  		0.000  	
+K = Lys		8		3.524  		0.534  	
+L = Leu		33		14.537 		1.965  	
+M = Met		6		2.643  		1.555  	
+N = Asn		3		1.322  		0.307  	
+O = ---		0		0.000  		0.000  	
+P = Pro		8		3.524  		0.678  	
+Q = Gln		23		10.132 		2.598  	
+R = Arg		13		5.727  		1.169  	
+S = Ser		7		3.084  		0.441  	
+T = Thr		11		4.846  		0.794  	
+U = ---		0		0.000  		0.000  	
+V = Val		9		3.965  		0.601  	
+W = Trp		3		1.322  		1.017  	
+X = Xaa		0		0.000  		0.000  	
+Y = Tyr		1		0.441  		0.130  	
+Z = Glx		0		0.000  		0.000  	
+
+Property	Residues		Number		Mole%
+Tiny		(A+C+G+S+T)		67		29.515
+Small		(A+B+C+D+G+N+P+S+T+V)	97		42.731
+Aliphatic	(A+I+L+V)		62		27.313
+Aromatic	(F+H+W+Y)		31		13.656
+Non-polar	(A+C+F+G+I+L+M+P+V+W+Y)	127		55.947
+Polar		(D+E+H+K+N+Q+R+S+T+Z)	100		44.053
+Charged		(B+D+E+H+K+R+Z)		56		24.670
+Basic		(H+K+R)			39		17.181
+Acidic		(B+D+E+Z)		17		 7.489
+
+
+
+
+============================================================
+ORF 8: NM_001388492_8 (130 aa)
+============================================================
+PEPSTATS of NM_001388492_8 from 1 to 130
+
+Molecular weight = 13834.69  		Residues = 130   
+Average Residue Weight  = 106.421 	Charge   = -5.0  
+Isoelectric Point = 4.3359
+A280 Molar Extinction Coefficients  = 34490 (reduced)   34865 (cystine bridges)
+A280 Extinction Coefficients 1mg/ml = 2.493 (reduced)   2.520 (cystine bridges)
+Improbability of expression in inclusion bodies = 0.836
+
+Residue		Number		Mole%		DayhoffStat
+A = Ala		10		7.692  		0.894  	
+B = Asx		0		0.000  		0.000  	
+C = Cys		6		4.615  		1.592  	
+D = Asp		3		2.308  		0.420  	
+E = Glu		11		8.462  		1.410  	
+F = Phe		2		1.538  		0.427  	
+G = Gly		8		6.154  		0.733  	
+H = His		0		0.000  		0.000  	
+I = Ile		4		3.077  		0.684  	
+J = ---		0		0.000  		0.000  	
+K = Lys		4		3.077  		0.466  	
+L = Leu		11		8.462  		1.143  	
+M = Met		5		3.846  		2.262  	
+N = Asn		1		0.769  		0.179  	
+O = ---		0		0.000  		0.000  	
+P = Pro		7		5.385  		1.036  	
+Q = Gln		1		0.769  		0.197  	
+R = Arg		5		3.846  		0.785  	
+S = Ser		29		22.308 		3.187  	
+T = Thr		5		3.846  		0.631  	
+U = ---		0		0.000  		0.000  	
+V = Val		11		8.462  		1.282  	
+W = Trp		6		4.615  		3.550  	
+X = Xaa		0		0.000  		0.000  	
+Y = Tyr		1		0.769  		0.226  	
+Z = Glx		0		0.000  		0.000  	
+
+Property	Residues		Number		Mole%
+Tiny		(A+C+G+S+T)		58		44.615
+Small		(A+B+C+D+G+N+P+S+T+V)	80		61.538
+Aliphatic	(A+I+L+V)		36		27.692
+Aromatic	(F+H+W+Y)		9		 6.923
+Non-polar	(A+C+F+G+I+L+M+P+V+W+Y)	71		54.615
+Polar		(D+E+H+K+N+Q+R+S+T+Z)	59		45.385
+Charged		(B+D+E+H+K+R+Z)		23		17.692
+Basic		(H+K+R)			9		 6.923
+Acidic		(B+D+E+Z)		14		10.769
+
+
+
