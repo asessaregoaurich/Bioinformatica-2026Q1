@@ -22,8 +22,8 @@ base_path = os.path.dirname(__file__)
 DB_LOCAL = os.path.join(base_path, "swissprot_db")
 OUTPUT_DIR  = "blast_results"          # carpeta donde se guardan los resultados
 
-CORRER_REMOTO = False   # True para correr BLAST remoto
-CORRER_LOCAL  = True    # True para correr BLAST local
+CORRER_REMOTO = True   # True para correr BLAST remoto
+CORRER_LOCAL  = False    # True para correr BLAST local
 
 # ============================================================
 
