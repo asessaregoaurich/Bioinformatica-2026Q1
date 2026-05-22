@@ -8,6 +8,8 @@ PARÁMETROS DE DISEÑO (desde primer_config.json):
   Contenido GC      : 50% - 60%
   Tm máxima         : 67°C
   Evitar GC en 3'   : True
+  Evitar GC en 5'   : True
+  Dist. min. primers: 50 nt
   Cantidad pedida   : 5 primers
 
 -----------------------------------------------------------------
@@ -20,42 +22,47 @@ PRIMER #1
   %GC         : 58.33%
   Tm          : 60.8°C
   Termina en GC: No
+  Empieza en GC: No
 
 PRIMER #2
-  Secuencia   : 5'-CCATGGCGACCCTGGAAAAGCTGA-3'
+  Secuencia   : 5'-AGGCCTTCGAGTCCCTCAAGTCCT-3'
   Dirección   : forward
-  Posición    : 144 - 167 (en el transcripto)
+  Posición    : 171 - 194 (en el transcripto)
   Longitud    : 24 nt
   %GC         : 58.33%
   Tm          : 60.8°C
   Termina en GC: No
+  Empieza en GC: No
 
 PRIMER #3
-  Secuencia   : 5'-GAGCCGCTGCACCGACCAAAGAAA-3'
+  Secuencia   : 5'-AATGGTGCCCCTCGGAGTTTGCGT-3'
   Dirección   : forward
-  Posición    : 392 - 415 (en el transcripto)
+  Posición    : 674 - 697 (en el transcripto)
   Longitud    : 24 nt
   %GC         : 58.33%
   Tm          : 60.8°C
   Termina en GC: No
+  Empieza en GC: No
 
 PRIMER #4
-  Secuencia   : 5'-GGCATTCGTCAGCCACCATCCTGA-3'
-  Dirección   : reverse
-  Posición    : 573 - 596 (en el transcripto)
+  Secuencia   : 5'-TGGTGAACCTTCTGCCGTGCCTGA-3'
+  Dirección   : forward
+  Posición    : 762 - 785 (en el transcripto)
   Longitud    : 24 nt
   %GC         : 58.33%
   Tm          : 60.8°C
   Termina en GC: No
+  Empieza en GC: No
 
 PRIMER #5
-  Secuencia   : 5'-GCAAACTCCGAGGGGCACCATTCT-3'
-  Dirección   : reverse
-  Posición    : 672 - 695 (en el transcripto)
+  Secuencia   : 5'-TCAGTCCAGGAGACCTTGGCTGCA-3'
+  Dirección   : forward
+  Posición    : 812 - 835 (en el transcripto)
   Longitud    : 24 nt
   %GC         : 58.33%
   Tm          : 60.8°C
   Termina en GC: No
+  Empieza en GC: No
 
 -----------------------------------------------------------------
 Total de primers diseñados: 5

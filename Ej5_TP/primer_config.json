@@ -13,10 +13,11 @@
         },
         "gc_clamp": {
             "avoid_gc_at_3prime": true,
-            "avoid_gc_at_5prime": false
+            "avoid_gc_at_5prime": true
         },
         "num_primers": 5,
-        "slide_step": 1
+        "slide_step": 1,
+        "min_distance_between_primers": 50
     },
     "gene_info": {
         "name": "HTT",

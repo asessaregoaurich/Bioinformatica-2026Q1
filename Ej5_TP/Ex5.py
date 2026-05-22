@@ -93,11 +93,12 @@ def is_valid_primer(sequence: str, config: dict) -> tuple[bool, dict]:
     starts_in_gc = seq[0] in ('G', 'C')
 
     metrics = {
-        "sequence":   seq,
-        "length":     length,
-        "gc_percent": gc_percent,
-        "tm":         tm,
-        "ends_in_gc": ends_in_gc,
+        "sequence":     seq,
+        "length":       length,
+        "gc_percent":   gc_percent,
+        "tm":           tm,
+        "ends_in_gc":   ends_in_gc,
+        "starts_in_gc": starts_in_gc,
     }
 
     # ── Aplicar criterios ──────────────────────────────────
@@ -186,13 +187,15 @@ def design_primers(sequence: str, config: dict) -> list[dict]:
 # Selección de los N mejores primers (diversidad de posiciones)
 # ─────────────────────────────────────────────────────────────
 
-def select_best_primers(candidates: list[dict], n: int, min_distance: int = 50) -> list[dict]:
+def select_best_primers(candidates: list[dict], n: int, min_distance: int) -> list[dict]:
     """
     Selecciona los N mejores primers intentando que estén distribuidos
     a lo largo de la secuencia (separados al menos min_distance nt entre sí).
 
     Estrategia: greedy — toma el mejor candidato disponible, luego descarta
     los que estén demasiado cerca, y repite.
+
+    min_distance se lee desde primer_config.json (min_distance_between_primers).
     """
     selected = []
     used_positions = []
@@ -240,6 +243,8 @@ def write_output(primers: list[dict], output_file: str, config: dict, gene_name:
         f.write(f"  Contenido GC      : {cfg['gc_content']['min_percent']}% - {cfg['gc_content']['max_percent']}%\n")
         f.write(f"  Tm máxima         : {cfg['melting_temperature']['max_celsius']}°C\n")
         f.write(f"  Evitar GC en 3'   : {cfg['gc_clamp']['avoid_gc_at_3prime']}\n")
+        f.write(f"  Evitar GC en 5'   : {cfg['gc_clamp']['avoid_gc_at_5prime']}\n")
+        f.write(f"  Dist. min. primers: {cfg['min_distance_between_primers']} nt\n")
         f.write(f"  Cantidad pedida   : {cfg['num_primers']} primers\n")
         f.write("\n" + "-" * 65 + "\n\n")
 
@@ -257,6 +262,7 @@ def write_output(primers: list[dict], output_file: str, config: dict, gene_name:
             f.write(f"  %GC         : {p['gc_percent']}%\n")
             f.write(f"  Tm          : {p['tm']}°C\n")
             f.write(f"  Termina en GC: {'Sí' if p['ends_in_gc'] else 'No'}\n")
+            f.write(f"  Empieza en GC: {'Sí' if p['starts_in_gc'] else 'No'}\n")
             f.write("\n")
 
         f.write("-" * 65 + "\n")
@@ -302,8 +308,9 @@ def main():
     with open(args.config, "r") as f:
         config = json.load(f)
 
-    gene_name = config.get("gene_info", {}).get("name", "desconocido")
-    n_primers = config["primer_design"]["num_primers"]
+    gene_name   = config.get("gene_info", {}).get("name", "desconocido")
+    n_primers   = config["primer_design"]["num_primers"]
+    min_dist    = config["primer_design"]["min_distance_between_primers"]
 
     print("=" * 65)
     print(f"  EJERCICIO 5 - Diseño de Primers")
@@ -337,7 +344,7 @@ def main():
         sys.exit(0)
 
     # ── Seleccionar los mejores ─────────────────────────────
-    best = select_best_primers(all_candidates, n_primers)
+    best = select_best_primers(all_candidates, n_primers, min_dist)
     print(f"Primers seleccionados: {len(best)}")
 
     # ── Mostrar resumen en consola ──────────────────────────
