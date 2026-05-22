@@ -23,17 +23,20 @@ import sys
 from pathlib import Path
 
 from Bio import SeqIO
+from Bio.SeqRecord import SeqRecord
 
 # ============================================================
 # CONFIGURACION
 # ============================================================
 
-# Input: FASTA de nucleotidos del Ej 1
-INPUT_FASTA = "HTT_NM_001388492.fasta"
+# Input GenBank
+INPUT_GENBANK = "sequence.gb"
+
+# FASTA CDS generado automaticamente desde el GB
+INPUT_FASTA = "HTT.fasta"
 
 # Outputs
 OUT_ORFS_TODOS   = "Ej4_ORFs.fasta"
-OUT_ORF_FRAME2   = "Ej4_ORF_frame2.fasta"
 OUT_DOMINIOS     = "Ej4_dominios.patmatmotifs"
 OUT_RESUMEN      = "Ej4_resumen.txt"
 
@@ -48,6 +51,51 @@ PATMATMOTIFS_FULL = True  # -full -> reporta tambien los motivos no clasicamente
 # ============================================================
 # FUNCIONES
 # ============================================================
+
+def genbank_a_fasta(genbank_file, output_fasta):
+    """
+    Extrae TODA la secuencia nucleotidica del GenBank
+    y la guarda como FASTA.
+
+    No usa CDS ni coordenadas.
+    Exporta el transcript/genoma completo tal como
+    aparece en el archivo GenBank.
+    """
+
+    if not Path(genbank_file).exists():
+        print(f"[ERROR] No se encuentra el archivo GenBank: {genbank_file}")
+        sys.exit(1)
+
+    print(f"\n[+] Extrayendo secuencia completa desde {genbank_file}")
+
+    fasta_records = []
+
+    for record in SeqIO.parse(genbank_file, "genbank"):
+
+        gene_name = record.name
+        descripcion = record.description
+
+        # TODA la secuencia
+        full_seq = record.seq
+
+        fasta_record = SeqRecord(
+            full_seq,
+            id=gene_name,
+            description=descripcion
+        )
+
+        fasta_records.append(fasta_record)
+
+    if not fasta_records:
+        print("[ERROR] No se pudo leer ninguna secuencia del GenBank.")
+        sys.exit(1)
+
+    SeqIO.write(fasta_records, output_fasta, "fasta")
+
+    print(f"[OK] FASTA generado: {output_fasta}")
+    print(f"    Secuencias exportadas: {len(fasta_records)}")
+    print(f"    Longitud: {len(fasta_records[0].seq)} nt")
+
 
 def run(cmd, descripcion):
     """Ejecuta un comando externo de EMBOSS y aborta si falla."""
@@ -113,101 +161,187 @@ def correr_getorf():
     run(cmd, f"getorf sobre {INPUT_FASTA} (minsize={GETORF_MINSIZE} aa)")
 
 
-def extraer_frame2():
-    """
-    getorf rotula cada ORF con la posicion de inicio y la hebra.
-    Para sentido directo: [start - end]   -> Frame +1, +2 o +3 segun start mod 3
-    Para hebra reversa:   [end - start] (REVERSE SENSE)
-
-    Frame +2 == start (1-indexado) tiene resto 2 al dividir por 3.
-    Tomamos el ORF mas largo del Frame +2 (asumimos que ese es el del HTT).
-    """
-    if not Path(OUT_ORFS_TODOS).exists():
-        print(f"[ERROR] No se encuentra {OUT_ORFS_TODOS}")
-        sys.exit(1)
-
-    print(f"\n[+] Filtrando ORFs del Frame +2 desde {OUT_ORFS_TODOS}")
-
-    # Parsear el FASTA con BioPython
-    records = list(SeqIO.parse(OUT_ORFS_TODOS, "fasta"))
-    print(f"    Total de ORFs leidos: {len(records)}")
-
-    # Buscar candidatos del Frame +2 (hebra directa, start mod 3 == 2)
-    candidatos = []
-    patron = re.compile(r"\[(\d+)\s*-\s*(\d+)\]")
-
-    for rec in records:
-        # rec.description contiene el header completo (incluye [start - end])
-        if "REVERSE SENSE" in rec.description:
-            continue
-        m = patron.search(rec.description)
-        if not m:
-            continue
-        start = int(m.group(1))
-        # Frame +1 -> start%3 == 1 ; Frame +2 -> start%3 == 2 ; Frame +3 -> start%3 == 0
-        if start % 3 == 2:
-            candidatos.append(rec)
-
-    if not candidatos:
-        print("[ERROR] No se encontraron ORFs en Frame +2. Revisa el FASTA o bajar minsize.")
-        sys.exit(1)
-
-    # Tomar el ORF mas largo (es el ORF principal del HTT)
-    rec_elegido = max(candidatos, key=lambda r: len(r.seq))
-    print(f"    -> Frame +2 elegido: {rec_elegido.description}  ({len(rec_elegido.seq)} aa)")
-
-    # Escribir como FASTA estandar (BioPython parte en lineas de 60 automaticamente)
-    SeqIO.write([rec_elegido], OUT_ORF_FRAME2, "fasta")
-
-
 def correr_patmatmotifs():
-    """Llama a patmatmotifs sobre el ORF del Frame +2."""
-    cmd = [
-        "patmatmotifs",
-        "-sequence", OUT_ORF_FRAME2,
-        "-outfile",  OUT_DOMINIOS,
-        "-auto",
-    ]
-    if PATMATMOTIFS_FULL:
-        cmd.insert(1, "-full")
-    run(cmd, f"patmatmotifs sobre {OUT_ORF_FRAME2}")
+    """Corre patmatmotifs sobre cada ORF individualmente."""
 
+    print("\n[+] Ejecutando patmatmotifs ORF por ORF")
+
+    records = list(SeqIO.parse(OUT_ORFS_TODOS, "fasta"))
+
+    salida_total = ""
+
+    for i, rec in enumerate(records, 1):
+
+        temp_fasta = f"tmp_orf_{i}.fasta"
+
+        # guardar ORF individual
+        SeqIO.write([rec], temp_fasta, "fasta")
+
+        print(f"    Analizando {rec.id} ({len(rec.seq)} aa)")
+
+        cmd = [
+            "patmatmotifs",
+            "-sequence", temp_fasta,
+            "-stdout",
+            "-auto",
+        ]
+
+        if PATMATMOTIFS_FULL:
+            cmd.insert(1, "-full")
+
+        resultado = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True
+        )
+
+        salida_total += resultado.stdout
+        salida_total += "\n\n"
+
+        # borrar temporal
+        Path(temp_fasta).unlink()
+
+    # guardar output combinado
+    with open(OUT_DOMINIOS, "w") as f:
+        f.write(salida_total)
+
+    print(f"[OK] Reporte combinado: {OUT_DOMINIOS}")
+
+def correr_pepstats():
+    """Corre pepstats sobre cada ORF individualmente."""
+
+    print("\n[+] Ejecutando pepstats ORF por ORF")
+
+    records = list(SeqIO.parse(OUT_ORFS_TODOS, "fasta"))
+
+    salida_total = ""
+
+    for i, rec in enumerate(records, 1):
+
+        temp_fasta = f"tmp_orf_{i}.fasta"
+
+        # guardar ORF individual
+        SeqIO.write([rec], temp_fasta, "fasta")
+
+        print(f"    Analizando {rec.id} ({len(rec.seq)} aa)")
+
+        cmd = [
+            "pepstats",
+            "-sequence", temp_fasta,
+            "-stdout",
+            "-auto",
+        ]
+
+        resultado = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True
+        )
+
+        salida_total += (
+            f"\n{'='*60}\n"
+            f"ORF {i}: {rec.id} ({len(rec.seq)} aa)\n"
+            f"{'='*60}\n"
+        )
+
+        salida_total += resultado.stdout
+        salida_total += "\n\n"
+
+        # borrar temporal
+        Path(temp_fasta).unlink()
+
+    # guardar output combinado
+    with open("Ej4_pepstats.txt", "w") as f:
+        f.write(salida_total)
+
+    print("[OK] Reporte combinado: Ej4_pepstats.txt")
 
 def resumir_resultados():
-    """Genera Ej4_resumen.txt listando los motivos PROSITE encontrados."""
+    """Genera un resumen legible de motivos PROSITE por ORF."""
+
     if not Path(OUT_DOMINIOS).exists():
         print(f"[ERROR] No se encuentra {OUT_DOMINIOS}")
         return
 
     motivos = []
-    bloque  = {}
-    with open(OUT_DOMINIOS) as f:
+    secuencia_actual = None
+    bloque = {}
+
+    with open(OUT_DOMINIOS, "r") as f:
+
         for linea in f:
-            linea = linea.rstrip()
-            if linea.startswith("Length"):
+            linea = linea.strip()
+
+            if linea.startswith("# Sequence:"):
+
+                secuencia_actual = (
+                    linea.replace("# Sequence:", "")
+                    .split("from:")[0]
+                    .strip()
+                )
+
+            elif linea.startswith("Length"):
                 bloque["length"] = linea.split("=")[1].strip()
+
             elif linea.startswith("Start"):
-                bloque["start"] = linea.split("=")[1].strip()
+                bloque["start"] = (
+                    linea.split("position")[1]
+                    .split("of")[0]
+                    .strip()
+                )
+
             elif linea.startswith("End"):
-                bloque["end"] = linea.split("=")[1].strip()
+                bloque["end"] = (
+                    linea.split("position")[1]
+                    .split("of")[0]
+                    .strip()
+                )
+
             elif linea.startswith("Motif"):
+
                 bloque["motif"] = linea.split("=")[1].strip()
+                bloque["sequence"] = secuencia_actual
+
                 motivos.append(dict(bloque))
                 bloque = {}
 
+    # =====================================================
+    # ESCRIBIR RESUMEN
+    # =====================================================
+
     with open(OUT_RESUMEN, "w") as f:
-        f.write("Ejercicio 4 - Resumen de motivos PROSITE encontrados\n")
+
+        f.write("Ejercicio 4 - Resumen de motivos PROSITE\n")
         f.write("=" * 60 + "\n\n")
-        f.write(f"Input proteina  : {OUT_ORF_FRAME2}\n")
+
+        f.write(f"Input proteinas : {OUT_ORFS_TODOS}\n")
         f.write(f"Reporte crudo   : {OUT_DOMINIOS}\n")
         f.write(f"Motivos hallados: {len(motivos)}\n\n")
-        for i, m in enumerate(motivos, 1):
-            f.write(f"[{i}] Motif: {m.get('motif','?')}\n")
-            f.write(f"    Posicion: {m.get('start','?')} - {m.get('end','?')}\n")
-            f.write(f"    Longitud del match: {m.get('length','?')}\n\n")
 
-    print(f"\n[OK] Resumen escrito en {OUT_RESUMEN} ({len(motivos)} motivos)")
+        por_orf = {}
 
+        for m in motivos:
+            seq = m["sequence"]
+
+            if seq not in por_orf:
+                por_orf[seq] = []
+
+            por_orf[seq].append(m)
+
+        for orf, lista in por_orf.items():
+
+            f.write("=" * 60 + "\n")
+            f.write(f"ORF: {orf}\n")
+            f.write(f"Motivos encontrados: {len(lista)}\n")
+            f.write("=" * 60 + "\n\n")
+
+            for i, m in enumerate(lista, 1):
+
+                f.write(f"[{i}] Motif: {m['motif']}\n")
+                f.write(f"    Posicion: {m['start']} - {m['end']}\n")
+                f.write(f"    Longitud: {m['length']}\n\n")
+
+    print(f"\n[OK] Resumen escrito en {OUT_RESUMEN}")
 
 # ============================================================
 # MAIN
@@ -218,15 +352,20 @@ def main():
     print("Ejercicio 4 - EMBOSS + PROSITE")
     print("=" * 60)
 
-    if not Path(INPUT_FASTA).exists():
-        print(f"[ERROR] No se encuentra el FASTA de entrada: {INPUT_FASTA}")
+    if not Path(INPUT_GENBANK).exists():
+        print(f"[ERROR] No se encuentra el GenBank de entrada: {INPUT_GENBANK}")
         sys.exit(1)
 
     verificar_emboss()
     verificar_prosite()
+
+    #GB -> FASTA
+    genbank_a_fasta(INPUT_GENBANK, INPUT_FASTA)
+
+    #Pipeline principal
     correr_getorf()
-    extraer_frame2()
     correr_patmatmotifs()
+    correr_pepstats()
     resumir_resultados()
 
     print("\n[OK] Ejercicio 4 finalizado.")

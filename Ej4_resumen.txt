@@ -1,23 +1,46 @@
-Ejercicio 4 - Resumen de motivos PROSITE encontrados
+Ejercicio 4 - Resumen de motivos PROSITE
 ============================================================
 
-Input proteina  : Ej4_ORF_frame2.fasta
+Input proteinas : Ej4_ORFs.fasta
 Reporte crudo   : Ej4_dominios.patmatmotifs
-Motivos hallados: 4
+Motivos hallados: 6
+
+============================================================
+ORF: NM_001388492_1
+Motivos encontrados: 4
+============================================================
 
 [1] Motif: AMIDATION
-    Posicion: position 2543 of sequence - position 2546 of sequence
-    Longitud del match: 4
+    Posicion: 2543 - 2546
+    Longitud: 4
 
 [2] Motif: AMIDATION
-    Posicion: position 1530 of sequence - position 1533 of sequence
-    Longitud del match: 4
+    Posicion: 1530 - 1533
+    Longitud: 4
 
 [3] Motif: LEUCINE_ZIPPER
-    Posicion: position 1444 of sequence - position 1465 of sequence
-    Longitud del match: 22
+    Posicion: 1444 - 1465
+    Longitud: 22
 
 [4] Motif: TYR_PHOSPHO_SITE_2
-    Posicion: position 2714 of sequence - position 2721 of sequence
-    Longitud del match: 8
+    Posicion: 2714 - 2721
+    Longitud: 8
+
+============================================================
+ORF: NM_001388492_6
+Motivos encontrados: 1
+============================================================
+
+[1] Motif: AMIDATION
+    Posicion: 23 - 26
+    Longitud: 4
+
+============================================================
+ORF: NM_001388492_7
+Motivos encontrados: 1
+============================================================
+
+[1] Motif: AMIDATION
+    Posicion: 178 - 181
+    Longitud: 4
 
