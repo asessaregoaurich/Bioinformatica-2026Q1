@@ -79,9 +79,15 @@ Configuración al inicio del script:
 INPUT_FASTA   = "Ej1_ORF.fas"
 DB_LOCAL      = "swissprot_db"
 OUTPUT_DIR    = "blast_results"
-CORRER_REMOTO = False   # cambiar a True para BLAST remoto
-CORRER_LOCAL  = True
+CORRER_REMOTO = False   # True para correr BLAST remoto contra servidores NCBI
+CORRER_LOCAL  = True    # True para correr BLAST local contra SwissProt descargada
 ```
+
+Para cambiar el modo, editá esas líneas con `nano Ejercicio2.py` antes de correr. Las combinaciones posibles son:
+
+- `CORRER_LOCAL = True` / `CORRER_REMOTO = False` → corre solo en local, más rápido, requiere SwissProt descargada
+- `CORRER_LOCAL = False` / `CORRER_REMOTO = True` → corre solo en remoto contra NCBI, más lento (~2-5 min por secuencia), no requiere DB local
+- `CORRER_LOCAL = True` / `CORRER_REMOTO = True` → corre ambos y guarda resultados separados con prefijo `blast_local_` y `blast_remote_`
 
 Resultados obtenidos:
 
