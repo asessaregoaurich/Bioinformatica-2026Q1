@@ -3,7 +3,7 @@ from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 
 # 1. Lectura del archivo GenBank 
-input_file = "sequence.gb"
+input_file = "inputs/sequence.gb"
 record = SeqIO.read(input_file, "genbank")
 dna_seq = record.seq
 
@@ -43,7 +43,7 @@ for frame in frames:
     protein_records.append(new_record)
 
 # 4. Escritura del archivo de salida en formato FASTA [cite: 34, 39]
-output_file = "Ej1_ORF.fas"
+output_file = "TP_Parte1/Ej1/output/Ej1_ORF.fas"
 SeqIO.write(protein_records, output_file, "fasta")
 
 print(f"Proceso completado. Se han generado 6 traducciones en '{output_file}'.")

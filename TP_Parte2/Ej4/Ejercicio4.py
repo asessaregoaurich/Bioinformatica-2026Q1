@@ -30,15 +30,15 @@ from Bio.SeqRecord import SeqRecord
 # ============================================================
 
 # Input GenBank
-INPUT_GENBANK = "sequence.gb"
+INPUT_GENBANK = "inputs/sequence.gb"
 
 # FASTA CDS generado automaticamente desde el GB
-INPUT_FASTA = "HTT.fasta"
+INPUT_FASTA = "inputs/HTT.fasta"
 
 # Outputs
-OUT_ORFS_TODOS   = "Ej4_ORFs.fasta"
-OUT_DOMINIOS     = "Ej4_dominios.patmatmotifs"
-OUT_RESUMEN      = "Ej4_resumen.txt"
+OUT_ORFS_TODOS   = "TP_Parte2/Ej4/output/Ej4_ORFs.fasta"
+OUT_DOMINIOS     = "TP_Parte2/Ej4/output/Ej4_dominios.patmatmotifs"
+OUT_RESUMEN      = "TP_Parte2/Ej4/output/Ej4_resumen.txt"
 
 # Parametros de getorf
 GETORF_FIND    = "1"   # -find 1 -> regiones entre stops, devuelve proteina traducida

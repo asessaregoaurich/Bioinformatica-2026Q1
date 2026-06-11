@@ -7,9 +7,9 @@ import os
 Entrez.email = "jaldana@itba.edu.ar" 
 
 # 2. Definición de archivos de entrada y salida
-blast_xml = "blast_results/blast_local_NM_001388492.1_Frame_+2.xml" # El output del Ejercicio 2
-output_fasta = "msa_input.fas"          # El archivo que contendrá todas las secuencias
-query_fasta = "Ej1_ORF.fas"            # Tu secuencia original (Frame +2)
+blast_xml    = "TP_Parte1/Ej2/output/blast_local_NM_001388492.1_Frame_+2.xml" # El output del Ejercicio 2
+output_fasta = "TP_Parte1/Ej3/output/msa_input.fas" # El archivo que contendrá todas las secuencias
+query_fasta  = "TP_Parte1/Ej1/output/Ej1_ORF.fas"   # Tu secuencia original (Frame +2)
 
 def generar_msa_input():
     print("Iniciando la preparación de datos para el MSA...")

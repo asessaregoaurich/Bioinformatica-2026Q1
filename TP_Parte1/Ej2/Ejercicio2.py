@@ -16,11 +16,11 @@ from Bio.Blast import NCBIWWW, NCBIXML
 #  CONFIGURACIÓN — modificá estas rutas
 # ============================================================
 
-INPUT_FASTA = "Ej1_ORF.fas"            # archivo FASTA de aminoácidos
+INPUT_FASTA = "TP_Parte1/Ej1/output/Ej1_ORF.fas"          # archivo FASTA de aminoácidos
 #DB_LOCAL    = r"C:\Users\acorb\Documents\ITBA\1C_2026\Bioinformática\Bioinformatica-2026Q1\swissprot"    # ruta a la DB local (sin extensión)
 base_path = os.path.dirname(__file__)
 DB_LOCAL = os.path.join(base_path, "swissprot_db")
-OUTPUT_DIR  = "blast_results"          # carpeta donde se guardan los resultados
+OUTPUT_DIR  = "TP_Parte1/Ej2/output"        # carpeta donde se guardan los resultados
 
 CORRER_REMOTO = True   # True para correr BLAST remoto
 CORRER_LOCAL  = False    # True para correr BLAST local
