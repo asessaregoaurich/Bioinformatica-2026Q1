@@ -254,3 +254,26 @@ Parámetros de diseño (desde `inputs/primer_config.json`):
 - Cantidad: 5 primers
 
 **[completar interpretación de resultados]**
+
+## Ejercicio 6 - Gen HTT (Huntingtina)
+
+a) Descripción del gen y la proteína
+El gen HTT (Gene ID: 3064, cromosoma 4p16.3) codifica la proteína Huntingtina, esencial para el desarrollo neuronal. Una expansión de repeticiones CAG en el exón 1 (>40 repeticiones) genera una región de poliglutamina tóxica que causa la Enfermedad de Huntington, trastorno neurodegenerativo autosómico dominante.
+
+b) Ortólogos
+NCBI identificó ortólogos en 810 especies mediante similitud de secuencia. Ensembl identificó 199 especies mediante árboles filogenéticos (más estricto), con 181 relaciones 1 a 1. El gen se conserva exclusivamente en vertebrados (primates, roedores, mamíferos, aves, reptiles y peces), consistente con su función en el sistema nervioso.
+
+c) Transcriptos e isoformas
+NCBI reporta 2 transcriptos revisados manualmente (NM_001388492.1 y NM_002111.8). Ensembl identifica 24 transcriptos, de los cuales solo 6 son codificantes de proteína; el resto corresponde a nonsense mediated decay, retained intron o CDS no definida. El transcripto HTT-201 tiene respaldo en ambas bases de datos y corresponde a la isoforma 1 usada en este TP.
+
+d) Interacciones proteína-proteína
+La Huntingtina actúa como proteína de andamiaje e interactúa con cientos de proteínas. Sus interactores clave son HAP1/HIP1 (transporte axonal) y caspasas CASP3/CASP6, que al clivar la proteína mutada liberan fragmentos tóxicos. UniProt presenta interacciones curadas experimentalmente; NCBI integra datos de alto rendimiento de BioGRID e IntAct.
+
+e) Gene Ontology 
+La Huntingtina se localiza en citoplasma, núcleo y vesículas intracelulares. Participa en transporte axonal, regulación transcripcional, autofagia y desarrollo neuronal. Sus funciones moleculares incluyen unión a proteínas, microtúbulos y factores de transcripción.
+
+f) Vías metabólicas
+La HTT es el componente central de la vía de la Enfermedad de Huntington. También interviene en transporte vesicular, autofagia y apoptosis mediada por caspasas.
+
+g) Variantes genéticas 
+El SNP rs362307 (3' UTR del gen HTT) está presente en el 65–70% de los pacientes de ascendencia europea, co-segregado con la expansión CAG patogénica. Es utilizado como diana terapéutica para siRNAs que silencian selectivamente el alelo mutado preservando la copia sana.
