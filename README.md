@@ -6,6 +6,65 @@ Gen: HTT (Huntingtina), cromosoma 4p16.3. Transcripto utilizado: NM_001388492.1 
 
 La Enfermedad de Huntington es una enfermedad neurodegenerativa hereditaria autosómica dominante causada por la expansión de repeticiones CAG en el exón 1 del gen HTT. En individuos sanos se observan entre 9 y 35 repeticiones; valores superiores a 40 son patológicos y producen una proteína huntingtina con una región de poliglutamina expandida que es tóxica para las neuronas estriatales.
 
+---
+
+## Estructura del repositorio
+
+```
+Bioinformatica-2026Q1/
+│
+├── inputs/                         ← Archivos de entrada externos (no generados por el pipeline)
+│   ├── sequence.gb                 ← GenBank del transcripto NM_001388492.1
+│   ├── HTT.fasta                   ← FASTA nucleotídico del transcripto HTT
+│   └── primer_config.json          ← Parámetros de diseño de primers (Ej5)
+│
+├── TP_Parte1/
+│   ├── Ej1/
+│   │   ├── output/
+│   │   │   └── Ej1_ORF.fas         ← 6 marcos de lectura traducidos
+│   │   └── ejercicio1.py
+│   ├── Ej2/
+│   │   ├── output/
+│   │   │   ├── blast_local_NM_001388492.1_Frame_+2.xml
+│   │   │   └── blast_remote_NM_001388492.1_Frame_+2.xml
+│   │   └── Ejercicio2.py
+│   └── Ej3/
+│       ├── output/
+│       │   ├── msa_input.fas
+│       │   └── msa_output.aln
+│       └── Ejercicio3.py
+│
+├── TP_Parte2/
+│   ├── Ej4/
+│   │   ├── output/
+│   │   │   ├── Ej4_ORFs.fasta
+│   │   │   ├── Ej4_dominios.patmatmotifs
+│   │   │   ├── Ej4_pepstats.txt
+│   │   │   └── Ej4_resumen.txt
+│   │   └── Ejercicio4.py
+│   └── Ej5/
+│       ├── output/
+│       │   └── primers_output.txt
+│       └── Ex5.py
+│
+├── setup.sh                        ← Setup inicial del entorno (correr una sola vez)
+├── run.sh                          ← Pipeline principal con logging
+├── README.md
+└── .gitignore
+```
+
+### Dependencias entre ejercicios
+
+| Ejercicio | Input | Fuente |
+|-----------|-------|--------|
+| Ej1 | `inputs/sequence.gb` | Descargado de NCBI |
+| Ej2 | `TP_Parte1/Ej1/output/Ej1_ORF.fas` | Output del Ej1 |
+| Ej3 | `TP_Parte1/Ej1/output/Ej1_ORF.fas` + `TP_Parte1/Ej2/output/blast_local_*.xml` | Outputs de Ej1 y Ej2 |
+| Ej4 | `inputs/sequence.gb` + `inputs/HTT.fasta` | Descargados de NCBI |
+| Ej5 | `inputs/HTT.fasta` + `inputs/primer_config.json` | HTT.fasta generado por Ej4 |
+
+---
+
 ## Setup del entorno
 
 Requiere el Workspace ITBA (BLAST 2.12.0+ ya instalado), Python 3.12+ y conexión a internet. El setup completo puede correrse con un solo script:
@@ -40,54 +99,62 @@ source ~/bioenv/bin/activate
 cd /home/ITBADC/<tu-usuario>/Bioinformatica-2026Q1
 ```
 
+---
+
 ## Ejecución
 
-El script `run.sh` automatiza el flujo completo:
+El script `run.sh` automatiza el flujo completo con validación de inputs/outputs y logging:
 
 ```bash
-bash run.sh 1      # Solo Ejercicio 1
-bash run.sh 2      # Solo Ejercicio 2
-bash run.sh 3      # Solo Ejercicio 3
-bash run.sh all    # Todos en secuencia
+bash run.sh 1        # Solo Ejercicio 1
+bash run.sh 2        # Solo Ejercicio 2
+bash run.sh 3        # Solo Ejercicio 3
+bash run.sh 4        # Solo Ejercicio 4
+bash run.sh 5        # Solo Ejercicio 5 (usa inputs por defecto)
+bash run.sh all      # Todos en secuencia
 ```
+
+Cada ejecución genera/actualiza `pipeline.log` en la raíz con timestamps y resultado de cada paso. Este archivo es local y está ignorado por git.
+
+---
 
 ## Ejercicio 1 — Procesamiento de secuencias
 
-Script: `ejercicio1.py` | Input: `sequence.gb` | Output: `Ej1_ORF.fas`
+Script: `TP_Parte1/Ej1/ejercicio1.py`
+Input: `inputs/sequence.gb`
+Output: `TP_Parte1/Ej1/output/Ej1_ORF.fas`
 
 Lee el mRNA del gen HTT desde el archivo GenBank y genera los 6 marcos de lectura posibles: 3 de la cadena directa (+1, +2, +3) y 3 de la complementaria reversa (-1, -2, -3). Traduce cada uno a aminoácidos y guarda las 6 secuencias en formato FASTA.
 
-```bash
-python3 ejercicio1.py
-```
-
 El marco de lectura correcto es el **frame +2**. El GenBank indica que la CDS empieza en la posición 146, lo que corresponde a ese frame. Se confirma porque es el único que produce una ORF larga sin codones de stop prematuros, comienza con `MATLEKLMKAFESLKSFQQQQQ...` que coincide con la huntingtina conocida, y el BLAST del Ejercicio 2 lo valida con E-value ~0 e identity 100%.
+
+---
 
 ## Ejercicio 2a — BLAST
 
-Script: `Ejercicio2.py` | Input: `Ej1_ORF.fas` | Output: `blast_results/`
+Script: `TP_Parte1/Ej2/Ejercicio2.py`
+Input: `TP_Parte1/Ej1/output/Ej1_ORF.fas`
+Output: `TP_Parte1/Ej2/output/`
 
-Puede correr en modo local, remoto o ambos según la configuración. Ejecuta BLASTp contra SwissProt para cada una de las 6 secuencias y guarda un archivo XML por frame en la carpeta `blast_results/`, con prefijo `blast_local_` o `blast_remote_` según el modo. Los archivos de frames sin hits se eliminan automáticamente — solo se conserva el del Frame +2.
-
-```bash
-python3 Ejercicio2.py
-```
+Puede correr en modo local, remoto o ambos según la configuración. Ejecuta BLASTp contra SwissProt para cada una de las 6 secuencias y guarda un archivo XML por frame en la carpeta `TP_Parte1/Ej2/output/`, con prefijo `blast_local_` o `blast_remote_` según el modo. Los archivos de frames sin hits se eliminan automáticamente — solo se conserva el del Frame +2.
 
 Configuración al inicio del script:
 
 ```python
-INPUT_FASTA   = "Ej1_ORF.fas"
+INPUT_FASTA   = "TP_Parte1/Ej1/output/Ej1_ORF.fas"
 DB_LOCAL      = "swissprot_db"
-OUTPUT_DIR    = "blast_results"
+OUTPUT_DIR    = "TP_Parte1/Ej2/output"
 CORRER_REMOTO = False   # True para correr BLAST remoto contra servidores NCBI
 CORRER_LOCAL  = True    # True para correr BLAST local contra SwissProt descargada
 ```
 
-Para cambiar el modo, editá esas líneas con `nano Ejercicio2.py` antes de correr. Las combinaciones posibles son:
+Para cambiar el modo, editá esas líneas con `nano TP_Parte1/Ej2/Ejercicio2.py` antes de correr. Las combinaciones posibles son:
 
 - `CORRER_LOCAL = True` / `CORRER_REMOTO = False` → corre solo en local, más rápido, requiere SwissProt descargada
 - `CORRER_LOCAL = False` / `CORRER_REMOTO = True` → corre solo en remoto contra NCBI, más lento (~2-5 min por secuencia), no requiere DB local
 - `CORRER_LOCAL = True` / `CORRER_REMOTO = True` → corre ambos y guarda resultados separados con prefijo `blast_local_` y `blast_remote_`
+
+> Nota: la base de datos `swissprot_db` debe estar en la misma carpeta que `Ejercicio2.py`. No se versiona por su tamaño (~500MB).
 
 Resultados obtenidos:
 
@@ -101,6 +168,8 @@ Resultados obtenidos:
 | -3    | 0    | —               | —        |
 
 Solo el Frame +2 produjo hits significativos, confirmando que es el marco de lectura correcto.
+
+---
 
 ## Ejercicio 2b — Interpretación del resultado BLAST
 
@@ -118,32 +187,34 @@ El **score** mide la calidad del alineamiento — un valor de 16594 es altísimo
 
 El hit 1 con 100% de identidad es exactamente la huntingtina humana (UniProt P42858). Los hits 2, 3 y 4 son ortólogos en ratón, rata y pez globo — misma proteína, distinto organismo — lo que refleja alta conservación evolutiva. El hit 5 en *D. discoideum* (un organismo unicelular) con 28.8% de identidad sugiere que esta familia de proteínas tiene un origen evolutivo muy antiguo.
 
+---
+
 ## Ejercicio 3 — Multiple Sequence Alignment (MSA)
 
-Script: `Ejercicio3.py` | Input: `blast_results/blast_local_NM_001388492.1_Frame_+2.xml` + `Ej1_ORF.fas` | Output: `msa_input.fas`, `msa_output.aln`
+Script: `TP_Parte1/Ej3/Ejercicio3.py`
+Input: `TP_Parte1/Ej2/output/blast_local_NM_001388492.1_Frame_+2.xml` + `TP_Parte1/Ej1/output/Ej1_ORF.fas`
+Output: `TP_Parte1/Ej3/output/msa_input.fas`, `TP_Parte1/Ej3/output/msa_output.aln`
 
 Descarga las secuencias de los mejores hits del BLAST desde NCBI y las combina con la secuencia query del Frame +2 para construir el archivo de entrada del alineamiento múltiple. El MSA resultante (`msa_output.aln`) incluye la huntingtina humana junto a sus ortólogos en ratón, rata, pez globo y *D. discoideum*.
 
-```bash
-python3 Ejercicio3.py
-```
-
 **Interpretación de Resultados:**
-El alineamiento confirma visualmente la alta conservación entre mamíferos y la mayor divergencia con organismos más distantes, consistente con los resultados del BLAST. La secuencia Query (`Human_HTT_Query`) resultó idéntica a la referencia humana (`HD_HUMAN`). Se observa una altísima conservación de la proteína entre los mamíferos (humano, ratón y rata), evidenciada por bloques inmensos de aminoácidos exactamente iguales. Como ejemplo, el extremo N-terminal (que inicia con la secuencia `MATLEKLMKAFESLKSFQQQQ`) se mantiene casi intacto en humanos, roedores e incluso en el pez globo (`HD_TAKRU`). 
+El alineamiento confirma visualmente la alta conservación entre mamíferos y la mayor divergencia con organismos más distantes, consistente con los resultados del BLAST. La secuencia Query (`Human_HTT_Query`) resultó idéntica a la referencia humana (`HD_HUMAN`). Se observa una altísima conservación de la proteína entre los mamíferos (humano, ratón y rata), evidenciada por bloques inmensos de aminoácidos exactamente iguales. Como ejemplo, el extremo N-terminal (que inicia con la secuencia `MATLEKLMKAFESLKSFQQQQ`) se mantiene casi intacto en humanos, roedores e incluso en el pez globo (`HD_TAKRU`).
 
 En contraste, se hace notoria una divergencia extrema en organismos más primitivos como la ameba *Dictyostelium discoideum* (`HD_DICDI`), cuya secuencia presenta numerosos huecos o *gaps* (-) a lo largo de todo el alineamiento. Biológicamente, las extensas regiones que se mantienen idénticas indican la presencia de dominios funcionales críticos que no toleran cambios evolutivos, mientras que las regiones pobladas de *gaps* y variaciones en organismos más distantes demuestran las áreas donde la proteína posee mayor flexibilidad estructural sin perder su función ancestral.
 
+---
+
 ## Ejercicio 4 — Dominios y motivos PROSITE
 
-Script: `Ejercicio4.py` | Input: `sequence.gb` | Output: `Ej4_ORFs.fasta`, `Ej4_dominios.patmatmotifs`, `Ej4_pepstats.txt`, `Ej4_resumen.txt`
+Script: `TP_Parte2/Ej4/Ejercicio4.py`
+Input: `inputs/sequence.gb` + `inputs/HTT.fasta`
+Output: `TP_Parte2/Ej4/output/`
 
 Lee el archivo GenBank, extrae la secuencia nucleotídica completa y la guarda como FASTA. Luego usa EMBOSS para identificar ORFs (`getorf`), buscar motivos funcionales contra PROSITE (`patmatmotifs`) y calcular estadísticas fisicoquímicas de cada proteína (`pepstats`).
 
-```bash
-python3 Ejercicio4.py
-```
-
 Requiere EMBOSS instalado y PROSITE indexado. El `run.sh` maneja esto automáticamente descargando e indexando PROSITE si no está disponible.
+
+> Nota: los archivos `prosite.dat` y `prosite.doc` (~50MB) se descargan automáticamente y se guardan en `prosite_data/PROSITE/`. No se versionan.
 
 `getorf` identificó 8 ORFs posibles con `-find 1 -minsize 300`. El ORF principal de 3142 aa corresponde a la huntingtina; los 7 restantes son marcos alternativos de menor longitud sin relevancia funcional esperada.
 
@@ -160,14 +231,26 @@ Los ORFs 6 y 7 presentaron una coincidencia de amidación cada uno; el resto no 
 
 Los sitios de amidación deben interpretarse con cautela: la amidación C-terminal es típica de hormonas peptídicas y proteínas secretadas, no de proteínas intracelulares de gran tamaño como la huntingtina, por lo que probablemente representan coincidencias con el patrón consenso sin relevancia funcional. El motivo leucine zipper también posee baja especificidad y no constituye evidencia concluyente de una región funcional. En cambio, el sitio de fosforilación en tirosina es particularmente interesante dado que la huntingtina sufre múltiples modificaciones postraduccionales que modulan su función, estabilidad y localización celular. En conjunto, estos hallazgos representan evidencia preliminar de posibles regiones funcionales y deben confirmarse con análisis adicionales.
 
+---
+
 ## Ejercicio 5 — Diseño de primers
 
-Script: `Ex5.py` | Config: `primer_config.json` | Input: `HTT_NM_001388492.fasta`
+Script: `TP_Parte2/Ej5/Ex5.py`
+Input: `inputs/HTT.fasta` + `inputs/primer_config.json`
+Output: `TP_Parte2/Ej5/output/primers_output.txt`
 
 Diseña primers a partir de la secuencia del transcripto usando una ventana deslizante. Los criterios de diseño están configurados en `primer_config.json`: longitud 18–24 nt, contenido GC 50–60%, Tm máxima 67°C, sin GC en el extremo 3'.
 
 ```bash
-python3 Ex5.py -i HTT_NM_001388492.fasta -c primer_config.json -o primers_output.txt
+bash run.sh 5
 ```
+
+Parámetros de diseño (desde `inputs/primer_config.json`):
+- Longitud: 18–24 nt
+- Contenido GC: 50–60%
+- Tm máxima: 67°C
+- Sin GC en extremos 3' ni 5'
+- Distancia mínima entre primers: 50 nt
+- Cantidad: 5 primers
 
 **[completar interpretación de resultados]**
