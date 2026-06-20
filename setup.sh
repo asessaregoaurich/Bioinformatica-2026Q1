@@ -35,4 +35,18 @@ else
     exit 1
 fi
 
+# Verificar/instalar MUSCLE
+echo "Verificando MUSCLE..."
+if command -v muscle &> /dev/null; then
+    echo "MUSCLE encontrado: $(muscle -version 2>&1 | head -n1)"
+else
+    echo "MUSCLE no está instalado. Intentando instalar via apt..."
+    if command -v apt-get &> /dev/null; then
+        sudo apt-get install -y muscle
+    else
+        echo "Error: no se pudo instalar MUSCLE automáticamente. Instalalo manualmente (ej. 'sudo apt install muscle') para continuar."
+        exit 1
+    fi
+fi
+
 echo "--- Setup finalizado con éxito ---"
