@@ -1,6 +1,7 @@
 # coding: utf-8
 from Bio import Entrez, SeqIO, SearchIO
 import os
+import subprocess
 
 # 1. Configuración de seguridad y contacto para NCBI
 # NCBI pide un mail para contactarte si tus consultas saturan sus servidores
@@ -61,6 +62,19 @@ def generar_msa_input():
     # 6. Guardar todo en un único archivo FASTA
     SeqIO.write(sequences_to_align, output_fasta, "fasta")
     print(f"\nListo! El archivo '{output_fasta}' fue generado con {len(sequences_to_align)} secuencias.")
+
+    
+    # 7. Generar el alineamiento multiple con MUSCLE
+    output_aln = "TP_Parte1/Ej3/output/msa_output.aln"
+    print(f"\nGenerando alineamiento multiple con MUSCLE...")
+
+    cmd = ["muscle", "-align", output_fasta, "-output", output_aln]
+    resultado = subprocess.run(cmd, capture_output=True, text=True)
+
+    if resultado.returncode != 0:
+        print(f"Error al correr MUSCLE: {resultado.stderr}")
+    else:
+        print(f"Alineamiento generado: {output_aln}")
 
 if __name__ == "__main__":
     generar_msa_input()

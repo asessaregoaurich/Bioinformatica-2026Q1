@@ -195,6 +195,8 @@ Script: `TP_Parte1/Ej3/Ejercicio3.py`
 Input: `TP_Parte1/Ej2/output/blast_local_NM_001388492.1_Frame_+2.xml` + `TP_Parte1/Ej1/output/Ej1_ORF.fas`
 Output: `TP_Parte1/Ej3/output/msa_input.fas`, `TP_Parte1/Ej3/output/msa_output.aln`
 
+Requiere MUSCLE instalado.
+
 Descarga las secuencias de los mejores hits del BLAST desde NCBI y las combina con la secuencia query del Frame +2 para construir el archivo de entrada del alineamiento múltiple. El MSA resultante (`msa_output.aln`) incluye la huntingtina humana junto a sus ortólogos en ratón, rata, pez globo y *D. discoideum*.
 
 **Interpretación de Resultados:**

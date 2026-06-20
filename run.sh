@@ -118,6 +118,12 @@ ejercicio_3() {
     fi
     log "INFO" "Inputs validados: blast XML + Ej1_ORF.fas"
 
+    # Validación de MUSCLE
+    if ! command -v muscle &> /dev/null; then
+    log "ERROR" "MUSCLE no está instalado. Instalá con: sudo apt install muscle"
+    exit 1
+    fi
+    
     # Ejecución
     python3 TP_Parte1/Ej3/Ejercicio3.py >> "$LOG_FILE" 2>&1
     if [ $? -ne 0 ]; then
