@@ -124,6 +124,22 @@ def is_valid_primer(sequence: str, config: dict) -> tuple[bool, dict]:
 # Diseño de primers por ventana deslizante
 # ─────────────────────────────────────────────────────────────
 
+def overlaps_excluded(start_0: int, end_0: int, exclude_regions: list[dict]) -> bool:
+    """
+    True si la ventana [start_0, end_0) (0-based, half-open) solapa con
+    alguna region excluida del config.
+
+    Las regiones del JSON estan en coordenadas 1-based cerradas (start, end),
+    se convierten a 0-based half-open para comparar.
+    """
+    for region in exclude_regions:
+        ex_start = region["start"] - 1   # 1-based cerrado -> 0-based
+        ex_end   = region["end"]         # cerrado 1-based == abierto 0-based
+        if start_0 < ex_end and end_0 > ex_start:
+            return True
+    return False
+
+
 def design_primers(sequence: str, config: dict) -> list[dict]:
     """
     Recorre la secuencia con una ventana deslizante probando todos los
@@ -132,12 +148,17 @@ def design_primers(sequence: str, config: dict) -> list[dict]:
     Para cada posición y largo, evalúa tanto la cadena directa (forward)
     como el complemento reverso (reverse).
 
+    Salta las ventanas que solapan con regiones excluidas (ej. tracto CAG
+    de Huntington) — los primers deben FLANQUEAR la variante patológica,
+    no caer dentro, para permitir su detección cuanti/cualitativa.
+
     Retorna una lista de primers válidos ordenados por Tm descendente.
     """
     cfg = config["primer_design"]
     seq = sequence.upper()
     seq_len = len(seq)
     step = cfg.get("slide_step", 1)
+    exclude_regions = cfg.get("exclude_regions", [])
 
     candidates = []
     seen = set()  # evitar duplicados
@@ -150,6 +171,10 @@ def design_primers(sequence: str, config: dict) -> list[dict]:
             end = start + plen
             if end > seq_len:
                 break
+
+            # ── Saltar si la ventana solapa una region excluida ──
+            if exclude_regions and overlaps_excluded(start, end, exclude_regions):
+                continue
 
             # ── Forward primer ──────────────────────────
             fwd_seq = seq[start:end]

@@ -17,11 +17,21 @@
         },
         "num_primers": 5,
         "slide_step": 1,
-        "min_distance_between_primers": 50
+        "min_distance_between_primers": 50,
+        "exclude_regions": [
+            {
+                "name": "CAG_repeat_exon1",
+                "start": 197,
+                "end": 259,
+                "reason": "Tracto CAG (poliglutamina) en exon 1 de NM_001388492.1. La consigna pide primers que permitan analisis cuanti/cualitativo de la variante patologica (expansion CAG), por lo que deben flanquear esta region, no caer dentro."
+            }
+        ]
     },
     "gene_info": {
         "name": "HTT",
         "disease": "Huntington",
-        "notes": "Region de repeticiones CAG en exon 1. Reemplazar input con NM_002111 o secuencia real."
+        "transcript": "NM_001388492.1",
+        "cds_start": 146,
+        "notes": "Region de repeticiones CAG en exon 1 (posiciones 197-259 en la referencia, 21 repeticiones). La expansion >40 CAG es la mutacion patogenica de Huntington."
     }
 }
