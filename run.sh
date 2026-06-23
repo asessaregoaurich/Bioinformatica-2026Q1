@@ -244,7 +244,7 @@ ejercicio_5() {
     mkdir -p TP_Parte2/Ej5/output
 
     # Ejecución
-    python3 TP_Parte2/Ej5/Ex5.py \
+    python3 TP_Parte2/Ej5/Ejercicio5.py \
         -i "$input_fasta" \
         -c "$config" \
         -o TP_Parte2/Ej5/output/primers_output.txt >> "$LOG_FILE" 2>&1

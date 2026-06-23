@@ -45,7 +45,7 @@ Bioinformatica-2026Q1/
 │   └── Ej5/
 │       ├── output/
 │       │   └── primers_output.txt
-│       └── Ex5.py
+│       └── Ejercicio5.py
 │
 ├── setup.sh                        ← Setup inicial del entorno (correr una sola vez)
 ├── run.sh                          ← Pipeline principal con logging
@@ -238,7 +238,7 @@ Los sitios de amidación deben interpretarse con cautela: la amidación C-termin
 
 ## Ejercicio 5 — Diseño de primers
 
-Script: `TP_Parte2/Ej5/Ex5.py`
+Script: `TP_Parte2/Ej5/Ejercicio5.py`
 Input: `inputs/HTT.fasta` + `inputs/primer_config.json`
 Output: `TP_Parte2/Ej5/output/primers_output.txt`
 

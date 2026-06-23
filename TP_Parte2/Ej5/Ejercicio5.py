@@ -15,7 +15,7 @@ Descripción:
         - Temperatura de melting <= 67°C
 
 Uso:
-    python Ex5.py -i transcripto.fasta -c primer_config.json [-o primers_output.txt]
+    python Ejercicio5.py -i transcripto.fasta -c primer_config.json [-o primers_output.txt]
 
 Requisitos:
     - BioPython: pip install biopython
