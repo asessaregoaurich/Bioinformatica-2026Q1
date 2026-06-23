@@ -255,7 +255,15 @@ Parámetros de diseño (desde `inputs/primer_config.json`):
 - Distancia mínima entre primers: 50 nt
 - Cantidad: 5 primers
 
-**[completar interpretación de resultados]**
+**Interpretación de Resultados:**
+
+Se obtuvieron 5 primers válidos que cumplen todos los criterios definidos en el archivo de configuración `primer_config.json`. Los cinco resultaron ser de tipo *forward*, con una longitud de 24 nt, un contenido GC del 58.33% y una Tm de 60.8°C. Estos valores homogéneos indican que el espacio de búsqueda en esta secuencia produce candidatos con propiedades termodinámicas muy similares. Aunque la ausencia de primers *reverse* es una limitación para una PCR real (donde se requeriría forzar la selección de al menos un par *forward/reverse*), el algoritmo seleccionado cumplió con priorizar los mejores candidatos individuales basándose estrictamente en las restricciones dadas de Tm y GC.
+
+Una decisión de diseño clave fue excluir la región de repeticiones CAG del exón 1 (posiciones 197–259) mediante el campo `exclude_regions` de la configuración. La consigna requiere que los primers permitan realizar un análisis cuanti y cualitativo de la variante patológica, la cual consiste justamente en la expansión de este tracto de poliglutaminas. Si un primer hibridara dentro de esta región, no sería posible distinguir un alelo sano de uno mutado. Al flanquear la región, el tamaño final del amplicón reflejará el número exacto de repeticiones presentes en el paciente.
+
+Los primers generados respetan este flanqueo estratégico y la separación mínima de 50 nt. Específicamente, los primers #1 (pos. 18–41) y #2 (pos. 171–194) se ubican corriente arriba (*upstream*) del tracto CAG, mientras que los primers #3, #4 y #5 (pos. 674–835) se ubican corriente abajo (*downstream*) de la mutación.
+
+Cabe destacar que los criterios aplicados cubren el diseño básico exigido (longitud, porcentaje GC, Tm máxima y evasión de GC en los extremos). Para un uso experimental in vitro, sería indispensable realizar validaciones adicionales (como la evaluación de formación de *hairpins*, dímeros de primers y un análisis de especificidad mediante BLAST contra el genoma humano para descartar *off-targets*) utilizando herramientas dedicadas como Primer3 o Primer-BLAST.
 
 ## Ejercicio 6 - Gen HTT (Huntingtina)
 
