@@ -200,6 +200,7 @@ Requiere MUSCLE instalado.
 Descarga las secuencias de los mejores hits del BLAST desde NCBI y las combina con la secuencia query del Frame +2 para construir el archivo de entrada del alineamiento múltiple. El MSA resultante (`msa_output.aln`) incluye la huntingtina humana junto a sus ortólogos en ratón, rata, pez globo y *D. discoideum*.
 
 **Interpretación de Resultados:**
+
 El alineamiento confirma visualmente la alta conservación entre mamíferos y la mayor divergencia con organismos más distantes, consistente con los resultados del BLAST. La secuencia Query (`Human_HTT_Query`) resultó idéntica a la referencia humana (`HD_HUMAN`). Se observa una altísima conservación de la proteína entre los mamíferos (humano, ratón y rata), evidenciada por bloques inmensos de aminoácidos exactamente iguales. Como ejemplo, el extremo N-terminal (que inicia con la secuencia `MATLEKLMKAFESLKSFQQQQ`) se mantiene casi intacto en humanos, roedores e incluso en el pez globo (`HD_TAKRU`).
 
 En contraste, se hace notoria una divergencia extrema en organismos más primitivos como la ameba *Dictyostelium discoideum* (`HD_DICDI`), cuya secuencia presenta numerosos huecos o *gaps* (-) a lo largo de todo el alineamiento. Biológicamente, las extensas regiones que se mantienen idénticas indican la presencia de dominios funcionales críticos que no toleran cambios evolutivos, mientras que las regiones pobladas de *gaps* y variaciones en organismos más distantes demuestran las áreas donde la proteína posee mayor flexibilidad estructural sin perder su función ancestral.
